@@ -1,11 +1,17 @@
 all: build/main.pdf
 
 # hier Python-Skripte:
-#build/plot.pdf: plot.py matplotlibrc header-matplotlib.tex | build
-#	TEXINPUTS=$$(pwd): python plot.py
-#
+build/plot-aufladen.pdf: plot-aufladen.py matplotlibrc header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd): python plot-aufladen.py
+
+build/plot-amplitude.pdf: plot-amplitude.py matplotlibrc header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd): python plot-amplitude.py
+
+build/plot-phasenverschiebung.pdf: plot-phasenverschiebung.py matplotlibrc header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd): python plot-phasenverschiebung.py
+
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/main.pdf:
+build/main.pdf: build/plot-aufladen.pdf build/plot-amplitude.pdf build/plot-phasenverschiebung.pdf
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
