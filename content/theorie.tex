@@ -1,2 +1,112 @@
+\section{Zielsetzung}
+Ziel des Versuches ist es, einen RC-Schwingkreis, also einen Stromkreis, welcher im wesentlichen aus einem Kondensator und einem Widerstand 
+besteht, auf sein Relaxationsverhalten hin zu untersuchen. Die Untersuchung beschäftigt sich mit der Bestimmung der Zeitkonstante
+und der Frequenzabhängigkeit (einer angelegten Wechselspannung) der Amplitude beziehungsweise Phasendifferenz. Anschließend soll der
+RC-Kreis auf seine Eigenschaft als Integrator hin untersucht werden.
+
 \section{Theorie}
 \label{sec:Theorie}
+
+Bei der nicht-oszillatorischen Rückkehr eines vom 
+Ruhezustand ausglenkten Systems in den Selbigen
+kann es zu Relaxationserscheinungen kommen. Die Zeit,
+welche das System hierzu benötigt, wird als 
+Relaxationszeit bezeichnet. Im Allgemeinen kann 
+für eine physikalische Größe $A$ die Änderungsgeschwindigkeit
+im Zeitpunkt $t$ als 
+\begin{equation}
+\label{eqn:aenderungsgeschwindigkeit}
+\frac{\symup{d} \, A} {\symup{d} \, t} = c (A(t) - A(\infty))
+\end{equation}
+angegeben werden, wobei $A(\infty)$ den Endzustand bezeichnet. 
+Daraus folgt mittels Integration vom Zeitpunkt $t = 0$ bis $t$
+\begin{equation}
+\label{eqn:A}
+A(t) = A(\infty) + [ A(0) - A(\infty)] \cdot e^{ct},
+\end{equation}
+wobei $c < 0$ gelten muss, damit $A(t)$ beschränkt ist.
+Das Relaxationsverhalten wird im Versuch durch den 
+Entlade - beziehungsweise Ladevorgang eines mit einem 
+Widerstand verbundenen Kondensator verwirklicht.
+
+\subsection{Der Aufladevorgang}
+    Die Spannung eines Kondensators lässt sich mit Hilfe der gespeicherten Ladung $Q$ und der Kapazität $C$ des Kondensator als 
+    \begin{equation}
+        \label{eqn:UC}
+        U_C = \frac{Q}{C}
+    \end{equation}
+    darstellen. Nach dem Ohm'schen Gesetz folgt, wenn der Kondensator über einen Widerstand verbunden ist, dass
+    \begin{equation}
+        \label{eqn:strom}
+        I = \frac{U_C}{R},
+    \end{equation}
+    wobei $I$ die Stromstärke ist. Hieraus folgt für die Änderung der Ladung pro Zeiteinheit:
+    \begin{equation}
+        \label{eqn:ladung}
+        \frac{\symup{d} \, Q}{\symup{d} \, t} = - \frac{1}{RC} Q(t).
+    \end{equation}
+    Da hier ein Aufladevorgang betrachtet wird, ist der Kondensator am Anfang ungeladen und am Ende ungeladen, also gelten.
+    \\ \\
+    \centerline{$Q(0) = 0 \text{ und } Q(\infty)  = C U_0$}
+    \\ \\
+    Mittels Gleichung \eqref{eqn:A} folgt daraus die Gleichung für den Aufladevorgang zu
+    \begin{equation}
+        \label{eqn:aufladung}
+        Q(t) = C U_0 (1 - e^{-\frac{t}{RC}} ),
+    \end{equation}
+    wobei $RC$ die Zeitkonstante des Relaxationsvorganges ist.    
+ 
+\subsection{Relaxationsverhalten bei angelegten Wechselspannungen}
+    Durch das Anlegen einer Wechselspannung 
+    \begin{equation}
+        \label{eqn:Wechselspannung}
+        U(t) = U_0 \cdot \cos(\omega t)
+    \end{equation}
+    bildet sich eine Phasenverschiebung zwischen der eingehenden Wechselspannung und der vom Kondensator 
+    ausgehenden Wechselspannung, welche sich mit zunehmender Frequenz verzögert. Mit dem Ansatz 
+    \begin{equation}
+        \label{eqn:Kondensatorspannung}
+        U_C (t) = A(\omega) \cdot \cos(\omega t + \phi(\omega))
+    \end{equation}
+    wird die Kondensatorspannung $U_C$ beschrieben, wobei $\phi$ die Phasenverschiebung ist.
+    Mit dem Zusammenhang
+    \begin{equation}
+        \label{eqn:stromstaerke}
+        I(t) = \frac{\symup{d} \, Q} {\symup{d} \, t} = C \frac{\symup{d} \, U_C} {\symup{d} \, t},
+    \end{equation}
+    sowie dem zweiten Kirchhoff'schen Gesetz ergibt sich die Phasendifferenz zu 
+    \begin{equation}
+        \label{eqn:phasendifferenz}
+        \phi(\omega) = \arctan (-\omega R C).
+    \end{equation}
+    Hieraus lässt sich die Frequenzabhängigkeit der Phasendifferenz feststellen, sowie das Verschwinden der Phasendifferenz für niedrige 
+    Frequenzen beziehungsweise die Konvergenz der Phasendifferenz für hohe Frequenzen gegen $\frac{\pi}{2}$.
+    Mit dem ebenfalls resultierenden Zusammenhang von Amplitude und Phasendifferenz
+    \begin{equation}
+        \label{eqn:zusammenhang}
+        A(\omega) = - \frac {\sin(\phi)}{\omega R C} U_0,
+    \end{equation}
+    ergibt sich die Amplitude $A$ zu
+    \begin{equation}
+    \label{eqn:amplitude}
+    A(\omega) = \frac{U_0}{\sqrt{1 + \omega^2 R^2 C^2}}.
+    \end{equation}
+
+\subsection{Der RC-Schwingkreis als Integrator}
+    Der RC-Kreis hat die Eigenschaft unter gewissen Vorraussetzungen eine zeitlich veränderliche Spannung $U(t)$ zu intergrieren. 
+    Aus dem zweiten Kirchhoffschen Gesetz und Gleichung \eqref{eqn:stromstaerke} folgt
+    \begin{equation}
+        \label{eqn:spannungint}
+        U(t) = R C \frac{\symup{d} \, U_C} {\symup{d} \, t} + U_C(t).
+    \end{equation}
+    Unter den Vorraussetzung $\omega >> \frac{1}{R C}$, ist $\lvert U_C \rvert << \lvert U_R \rvert $ und $\lvert U_C \rvert << \lvert U \rvert $, 
+    sodass sich näherungsweise sagen lässt:
+    \begin{equation}
+        \label{eqn:int1}
+        U(t) = R C \frac{\symup{d} \, U_C} {\symup{d} \, t}
+    \end{equation}
+    beziehungsweise
+    \begin{equation}
+        \label{eqn:int2}
+        U_C(t) = \frac {1} {R C} \int_0^{t} U(t') \symup{d} \, t'.    
+    \end{equation}    
