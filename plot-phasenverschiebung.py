@@ -16,10 +16,19 @@ werte = csv_read("csv/variable-frequenz.csv")
 xdata = np.zeros(26)
 ydata = np.zeros(26)
 
+fx = np.zeros(2)
+fy = np.zeros(2)
+
 ignore = 3
 i=0
+j=0
 for values in werte:
     if(ignore >= 1):
+        if(ignore <=2):
+            fx[j] = float(values[0]) * 2 * np.pi
+            fy[j] = float(values[2])*(float(values[0]) * 2 * np.pi) * 10**(-6)
+            j+=1
+
         ignore = ignore - 1
     else:
         xdata[i] = float(values[0]) * 2 * np.pi
@@ -28,7 +37,9 @@ for values in werte:
 
 x_line = np.append([np.linspace(10, 100), np.linspace(100, 1000)], np.linspace(1000, 10000)) * 2 * np.pi
 
+
 plt.plot(xdata, ydata, "r.", label="Messwerte")
+plt.plot(fx, fy, "ro", label="Nicht betrachtete Messwerte")
 popt, pcov = curve_fit(func, xdata, ydata)
 plt.plot(x_line, func(x_line, *popt), "b-", label="Fit")
 
