@@ -1,12 +1,61 @@
 \section{Auswertung}
 \label{sec:Auswertung}
 
+\subsection{Aufladeprozess eines Kondensators}
+%TODO: Gleichung
+Die Messwerte, die während des Aufladeprozesses des Kondensators aufgenommen werden, werden in einem Plot aufgetragen.
+Dabei wird GLEICHUNG umgeformt und logarithmisiert, um mittels linearer Regression eine Gerade der Form
+
+%Aufladen
+\begin{equation}
+    ln\bigg(1  - \frac{U_C}{U_0}\bigg) = -ax + b_1
+\end{equation}
+
+über die Messwerte zu legen. Dabei beträgt die Maximalspannung $U_0=15.2$V. Die gemessenen Daten sind in \autoref{tab:aufladen} zu finden und der geplottete Graph in \autoref{fig:aufladen}.
+
+\input{../content/aufladen.tex}
+
 \begin{figure}
     \centering
     \includegraphics{build/plot-aufladen.pdf}
     \caption{Plot der Messdaten des Aufladevorgangs.}
     \label{fig:aufladen}
 \end{figure}
+
+Mittels Python 3.7.0 bestimmen sich folgende Werte für die Koeffizienten:
+
+\begin{center}
+    $a = (800 \pm 8) \frac{1}{\symup{s}}$
+
+    $b_1 = 0.08 \pm 0.01$.
+\end{center}
+
+Mit der Relation
+
+\begin{center}
+    $a = \frac{1}{RC}$
+\end{center}
+
+folgt direkt
+
+\begin{center}
+    $RC = (1.26 \pm 0.01) \cdot 10^{-3}$ s.
+\end{center}
+
+\subsection{Angelegtes Sinussignal mit variabler Frequenz}
+
+Die Messwerte, die während der Messung mit einem angelegtem Sinussignal aufgenommen werden, sind in \autoref{tab:var-freq} zu sehen.
+Zur Verschaulichung werden diese Werte in zwei Diagrammen aufgetragen, wobei die $f$-Achsen jeweils logarithmisch skaliert sind.
+
+\input{../content/var-freq.tex}
+
+Zunächst wird das Amplitudenverhältnis $\frac{U_C}{U_0}$ gegen die Kreifrequenz $\omega = 2 \pi f$ aufgetragen. Darüber wird ein Fit der Form
+
+\begin{equation}
+    \frac{U_C}{U_0} = \frac{1}{\sqrt{ b_2 + \omega^2 \cdot (RC)^2 }}
+\end{equation}
+
+gelegt. Dieser Plot ist in \autoref{fig:amplitude} zu sehen.
 
 \begin{figure}
     \centering
@@ -15,9 +64,45 @@
     \label{fig:amplitude}
 \end{figure}
 
+\input{../content/var-freq.tex}
+
+Nach dieser Methode berechnet sich die Zeitkonstante mittels Python 3.7.0 als
+
+\begin{centering}
+    $RC = (1.36 \pm 0.02) \cdot 10^{-3} $s
+
+    $b_2 = 1.049 \pm 0.006$
+\end{centering}
+
+%TODO: Gleichung
+Um die Phasenverschiebung mittels der Daten in \autoref{tab:var-freq} zu errechnen wird GLEICHUNG verwendet.
+Diese Daten werden ebenfalls geplottet und über diese wird ein Fit der Form
+
+%Phasenverschiebung
+\begin{equation}
+    \phi = \arctan (-RC \cdot \omega + b_3)
+\end{equation}
+
+gelegt. Das resultierende Diagramm ist in \autoref{fig:phasenverschiebung} zu finden.
+
 \begin{figure}
     \centering
     \includegraphics{build/plot-phasenverschiebung.pdf}
     \caption{Plot der Messdaten der Phasenverschiebung in Frequnzabhängigkeit.}
     \label{fig:phasenverschiebung}
+\end{figure}
+
+Ebenfalls mittels Pyhton 3.7.0 ermittelt sich die Koeffizienten mit dieser Methode als
+
+\begin{center}
+    $RC = (1.33 \pm 0.05) \cdot 10^{-3}$s
+
+    $b_3 = -0.17 \pm 0.02$.
+\end{center}
+
+\begin{figure}
+    \centering
+    \includegraphics{build/plot-polar.pdf}
+    \caption{Das Amplitudenverhältnis in Abhängigkeit von der Phasenverschiebung.}
+    \label{fig:polar}
 \end{figure}

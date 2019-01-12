@@ -10,8 +10,11 @@ build/plot-amplitude.pdf: plot-amplitude.py matplotlibrc header-matplotlib.tex |
 build/plot-phasenverschiebung.pdf: plot-phasenverschiebung.py matplotlibrc header-matplotlib.tex | build
 	TEXINPUTS=$$(pwd): python plot-phasenverschiebung.py
 
+build/plot-polar.pdf: polarplot.py matplotlibrc header-matplotlib.tex | build
+	TEXINPUTS=$$(pwd): python polarplot.py
+
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/main.pdf: build/plot-aufladen.pdf build/plot-amplitude.pdf build/plot-phasenverschiebung.pdf
+build/main.pdf: build/plot-aufladen.pdf build/plot-amplitude.pdf build/plot-phasenverschiebung.pdf build/plot-polar.pdf
 
 build/main.pdf: FORCE | build
 	  TEXINPUTS=build: \
