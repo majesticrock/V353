@@ -11,7 +11,7 @@ Dabei wird GLEICHUNG umgeformt und logarithmisiert, um mittels linearer Regressi
     ln\bigg(1  - \frac{U_C}{U_0}\bigg) = -ax + b_1
 \end{equation}
 
-über die Messwerte zu legen. Dabei beträgt die Maximalspannung $U_0=15.2$V. Die gemessenen Daten sind in \autoref{tab:aufladen} zu finden und der geplottete Graph in \autoref{fig:aufladen}.
+über die Messwerte zu legen. Dabei beträgt die Maximalspannung $U_0=15,\~2$V. Die gemessenen Daten sind in \autoref{tab:aufladen} zu finden und der geplottete Graph in \autoref{fig:aufladen}.
 
 \input{../content/aufladen.tex}
 
@@ -27,7 +27,7 @@ Mittels Python 3.7.0 bestimmen sich folgende Werte für die Koeffizienten:
 \begin{center}
     $a = (800 \pm 8) \frac{1}{\symup{s}}$
 
-    $b_1 = 0.08 \pm 0.01$.
+    $b_1 = 0,\~08 \pm 0,\~01$.
 \end{center}
 
 Mit der Relation
@@ -39,7 +39,7 @@ Mit der Relation
 folgt direkt
 
 \begin{center}
-    $RC = (1.26 \pm 0.01) \cdot 10^{-3}$ s.
+    $RC = (1,\~26 \pm 0,\~01) \cdot 10^{-3}$ s.
 \end{center}
 
 \subsection{Angelegtes Sinussignal mit variabler Frequenz}
@@ -69,9 +69,9 @@ gelegt. Dieser Plot ist in \autoref{fig:amplitude} zu sehen.
 Nach dieser Methode berechnet sich die Zeitkonstante mittels Python 3.7.0 als
 
 \begin{centering}
-    $RC = (1.36 \pm 0.02) \cdot 10^{-3} $s
+    $RC = (1,\~36 \pm 0,\~02) \cdot 10^{-3} $s
 
-    $b_2 = 1.049 \pm 0.006$
+    $b_2 = 1,\~049 \pm 0,\~006$
 \end{centering}
 
 %TODO: Gleichung
@@ -95,14 +95,87 @@ gelegt. Das resultierende Diagramm ist in \autoref{fig:phasenverschiebung} zu fi
 Ebenfalls mittels Pyhton 3.7.0 ermittelt sich die Koeffizienten mit dieser Methode als
 
 \begin{center}
-    $RC = (1.33 \pm 0.05) \cdot 10^{-3}$s
+    $RC = (1,\~33 \pm 0,\~05) \cdot 10^{-3}$s
 
-    $b_3 = -0.17 \pm 0.02$.
+    $b_3 = -0,\~17 \pm 0,\~02$.
 \end{center}
+
+Mittels der Daten in \autoref{tab:var-freq} wird ebenfalls ein Polarplot erstellt. Dabei wird das Amplitudenverhältnis $\frac{U_C}{U_0}$ radial aufgetragen und die Phasenverschiebung als Winkel.
+Zur Bestimmung der Ausgleichsfunktion wird zunächst \eqref{eqn:phasendifferenz} umgekehrt. Dadurch entsteht
+
+\begin{equation}
+    \omega(\phi) = -\frac{\tan(\phi)}{RC}.
+\end{equation}
+
+Dies wird in \eqref{eqn:zusammenhang} eingesetzt und es entsteht die Ausgleichsfunktion
+
+\begin{equation}
+    A(\phi) = \frac{\sin(\phi)}{\tan(\phi)} = \cos(\phi).
+\end{equation}
+
+Der damit entstehende Plot ist in \autoref{fig:polar} zu sehen.
 
 \begin{figure}
     \centering
     \includegraphics{build/plot-polar.pdf}
     \caption{Das Amplitudenverhältnis in Abhängigkeit von der Phasenverschiebung.}
     \label{fig:polar}
+\end{figure}
+
+
+\subsection{Überprüfung der Integrationsfunktion des RC-Kreises}
+
+Zunächst wird eine Sinusfunktion in den RC-Kreis gesendet. Es gilt
+
+\begin{equation}
+    \int \sin(t) \symup{d}t = cos(t).
+\end{equation}
+
+Dieses ist in \autoref{fig:sinus} zu sehen.
+Daraufhin wird eine Rechteckfunktion integriert. Dabei sei $f(t)$ die Rechteckfunktion, womit
+
+\begin{equation}
+    \int f(t) \symup{d}t = \left\{\begin{array}{ll} 
+    t & 0 \leq t \less T \\
+    -t & T \leq t \less 2T \\
+    \end{array}
+    \right.
+\end{equation}
+
+gilt. Auch dies ist in \autoref{fig:rechteck} zu sehen.
+Zuletzt wird ein Dreieckssignal integriert. Nun sei $g(t)$ die Dreiecksfunktion. Damit gilt
+
+\begin{equation}
+    \int g(t) \symup{d}t = \left\{\begin{array}{ll}
+    \frac{1}{2} t^2 & 0 \leq t \less T \\
+    -\frac{1}{2} t^2 & T \leq t \less 2T \\
+    \end{array}
+    \right.
+    .
+\end{equation}
+
+Diese Funktion wird ebenfalls von dem Oszilloskop dargestellt und ist in \autoref{fig:dreieck} zu sehen.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{content/sinus.jpg}
+        \caption{Sinussignal.}
+        \label{fig:sinus}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{content/dreieck.jpg}
+        \caption{Dreieckssignal.}
+        \label{fig:dreieck}
+    \end{subfigure}
+    \begin{subfigure}{0.32\textwidth}
+        \centering
+        \includegraphics[width=0.95\textwidth]{content/rechteck.jpg}
+        \caption{Rechtecksignal.}
+        \label{fig:rechteck}
+    \end{subfigure}
+    \caption{Graphen während der Integrations.}
+    \label{fig:integration}
 \end{figure}
