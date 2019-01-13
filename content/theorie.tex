@@ -52,8 +52,13 @@ Widerstand verbundenen Kondensator verwirklicht.
     Mittels Gleichung \eqref{eqn:A} folgt daraus die Gleichung für den Aufladevorgang zu
     \begin{equation}
         \label{eqn:aufladung}
-        Q(t) = C U_0 (1 - e^{-\frac{t}{RC}} ),
+        Q(t) = C U_0 (1 - e^{-\frac{t}{RC}} )
     \end{equation}
+    und damit
+    \begin{equation}
+        \label{eqn:wunschformel}
+        U(t) = U_0 (1 - e^{-\frac{t}{RC}} ),
+    \end{equation}    
     wobei $RC$ die Zeitkonstante des Relaxationsvorganges ist.    
  
 \subsection{Relaxationsverhalten bei angelegten Wechselspannungen}
@@ -74,10 +79,16 @@ Widerstand verbundenen Kondensator verwirklicht.
         \label{eqn:stromstaerke}
         I(t) = \frac{\symup{d} \, Q} {\symup{d} \, t} = C \frac{\symup{d} \, U_C} {\symup{d} \, t},
     \end{equation}
-    sowie dem zweiten Kirchhoff'schen Gesetz ergibt sich die Phasendifferenz zu 
+    sowie dem zweiten Kirchhoff'schen Gesetz ergibt sich die Phasendifferenz $\phi$ zu 
     \begin{equation}
         \label{eqn:phasendifferenz}
         \phi(\omega) = \arctan (-\omega R C).
+    \end{equation}
+    Als Funktion der Periodendauer $b$ und dem Abstand der Nulldurchläufe zweier Phasenverschobener Spannungen $a$, ergibt sich die Phasendifferenz $\phi$
+    zudem zu
+    \begin{equation}
+        \label{eqn:phasenmessung}
+        \phi = \frac {a}{b} \cdot 2 \pi.
     \end{equation}
     Hieraus lässt sich die Frequenzabhängigkeit der Phasendifferenz feststellen, sowie das Verschwinden der Phasendifferenz für niedrige 
     Frequenzen beziehungsweise die Konvergenz der Phasendifferenz für hohe Frequenzen gegen $\frac{\pi}{2}$.
