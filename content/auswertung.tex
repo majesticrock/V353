@@ -2,9 +2,9 @@
 \label{sec:Auswertung}
 
 \subsection{Aufladeprozess eines Kondensators}
-%TODO: Gleichung
+
 Die Messwerte, die während des Aufladeprozesses des Kondensators aufgenommen werden, werden in einem Plot aufgetragen.
-Dabei wird GLEICHUNG umgeformt und logarithmisiert, um mittels linearer Regression eine Gerade der Form
+Dabei wird \eqref{eqn:wunschformel} umgeformt und logarithmisiert, um mittels linearer Regression eine Gerade der Form
 
 %Aufladen
 \begin{equation}
@@ -45,7 +45,7 @@ folgt direkt
 \subsection{Angelegtes Sinussignal mit variabler Frequenz}
 
 Die Messwerte, die während der Messung mit einem angelegtem Sinussignal aufgenommen werden, sind in \autoref{tab:var-freq} zu sehen.
-Zur Verschaulichung werden diese Werte in zwei Diagrammen aufgetragen, wobei die $f$-Achsen jeweils logarithmisch skaliert sind.
+Zur Verschaulichung werden diese Werte in zwei Diagrammen aufgetragen, wobei die $\omega$-Achsen jeweils logarithmisch skaliert sind.
 
 \input{../content/var-freq.tex}
 
@@ -72,8 +72,7 @@ Nach dieser Methode berechnet sich die Zeitkonstante mittels Python 3.7.0 als
     $b_2 = 1,\~049 \pm 0,\~006$
 \end{centering}
 
-%TODO: Gleichung
-Um die Phasenverschiebung mittels der Daten in \autoref{tab:var-freq} zu errechnen wird GLEICHUNG verwendet.
+Um die Phasenverschiebung mittels der Daten in \autoref{tab:var-freq} zu errechnen wird \eqref{eqn:phasenmessung} verwendet.
 Diese Daten werden ebenfalls geplottet und über diese wird ein Fit der Form
 
 %Phasenverschiebung
@@ -126,7 +125,7 @@ Der damit entstehende Plot ist in \autoref{fig:polar} zu sehen.
 Zunächst wird eine Sinusfunktion in den RC-Kreis gesendet. Es gilt
 
 \begin{equation}
-    \int \sin(t) \symup{d}t = cos(t).
+    \int \sin(t) \symup{d}t = \cos(t).
 \end{equation}
 
 Dieses ist in \autoref{fig:sinus} zu sehen.
@@ -174,6 +173,6 @@ Diese Funktion wird ebenfalls von dem Oszilloskop dargestellt und ist in \autore
         \caption{Rechtecksignal.}
         \label{fig:rechteck}
     \end{subfigure}
-    \caption{Graphen während der Integrations.}
+    \caption{Graphen während der Integration.}
     \label{fig:integration}
 \end{figure}
